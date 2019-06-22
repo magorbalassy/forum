@@ -1,0 +1,38 @@
+{% block head %}
+<head>
+  <tr>
+    <td><a href="{{ url_for('main') }}">Home</a></td>
+    {% if session.logged_in %}
+    <td><a href="{{ url_for('logout') }}">Logout</a></td>
+    {% else %}
+    <td><a href="{{ url_for('signup') }}">Signup</a></td>
+    <td><a href="{{ url_for('login') }}">Login</a></td>
+    {% endif %}
+    <td><a href="{{ url_for('forum') }}">Forum</a></td>
+    {% if session.logged_in %}
+    <td>User {{ session.username }} is logged in.</td>
+    {% endif %}
+  </tr>
+</head>
+{% endblock %}
+<p>
+  {% block body %}
+  {% if not session.logged_in %}
+  <p>
+    Please log in / signup, or check out the
+    <a href="{{ url_for('forum') }}">forums</a>
+  </p>
+  {% endif %}
+  {% endblock %}
+</p>
+{% block footer %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %} 
+{% endblock %}

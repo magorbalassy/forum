@@ -1,0 +1,23 @@
+{% extends 'header.html' %}
+{% block body %}
+  <code>
+    Topics:
+  <table>
+      {% for topic in topics %}
+      <tr>
+        <td><a href="{{ url_for('forum') }}/{{ topic.id }}">{{ topic.title }} </a></td>
+      </tr>
+      {% endfor %}
+  </table>
+  </code>
+  
+  {% if session.logged_in %}
+  <form action="{{ url_for('forum') }}" method=post>
+      <label for="user">New topic</label>
+      <input name="title" type="text"><br>
+      <button class="btn btn-default" type="submit">Create topic</button>
+  </form>
+  {% else %}
+    Please log in / create a user account to start a new topic.
+  {% endif %}
+{% endblock %}
