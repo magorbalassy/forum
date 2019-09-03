@@ -1,1 +1,1 @@
-# Basic forum web application, in Ptyhon / Flask with SQLite and Jinja2.
+# Basic forum web application, in Python / Flask with SQLite and Jinja2.
